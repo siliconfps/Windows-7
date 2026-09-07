@@ -1,0 +1,17 @@
+pkgbase = windows-7-icon-theme-git
+	pkgdesc = Windows 7 icon theme for Linux desktops (GTK 3, GTK 4, XFCE, MATE, Cinnamon)
+	pkgver = r14.3a4ef5c
+	pkgrel = 1
+	url = https://github.com/siliconfps/Windows-7
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	depends = gtk-update-icon-cache
+	depends = hicolor-icon-theme
+	optdepends = cinnamon: support for custom applet icons
+	provides = windows-7-icon-theme
+	conflicts = windows-7-icon-theme
+	source = git+https://github.com/siliconfps/Windows-7.git
+	sha256sums = SKIP
+
+pkgname = windows-7-icon-theme-git

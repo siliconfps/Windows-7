@@ -5,6 +5,10 @@
 [![GTK Compatibility](https://img.shields.io/badge/GTK-3%20%7C%204-green.svg)](https://www.gtk.org/)
 [![Arch Linux PKGBUILD](https://img.shields.io/badge/Arch%20Linux-PKGBUILD-1793d1.svg)](PKGBUILD)
 
+<p align="center">
+  <img src="preview.png" alt="Windows 7 Icon Theme Preview" width="800" />
+</p>
+
 A high-fidelity, skeuomorphic **Windows 7 Aero** icon theme modernized and optimized for current Linux desktop environments (**XFCE**, **Cinnamon**, **MATE**, and **GNOME** / **GTK 3 & GTK 4**).
 
 ---

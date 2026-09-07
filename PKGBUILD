@@ -35,6 +35,8 @@ package() {
         ! -name 'applets' \
         ! -name 'llms.md' \
         ! -name 'llms.txt' \
+        ! -name 'preview.png' \
+        ! -name '.SRCINFO' \
         ! -name '*.pkg.tar.*' \
         -exec cp -dr --no-preserve=ownership -t "${_dest}/" {} +
 }

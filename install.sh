@@ -142,6 +142,8 @@ EXCLUDE_LIST=(
     "applets"
     "llms.md"
     "llms.txt"
+    "preview.png"
+    ".SRCINFO"
 )
 
 # Use cp or rsync if available
