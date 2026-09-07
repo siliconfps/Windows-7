@@ -1,5 +1,6 @@
 # Windows 7 Icon Theme for Linux
 
+[![Latest Release](https://img.shields.io/github/v/release/siliconfps/Windows-7?color=blue&label=Release)](https://github.com/siliconfps/Windows-7/releases/latest)
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/License-GPL%203.0+-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GTK Compatibility](https://img.shields.io/badge/GTK-3%20%7C%204-green.svg)](https://www.gtk.org/)
 [![Arch Linux PKGBUILD](https://img.shields.io/badge/Arch%20Linux-PKGBUILD-1793d1.svg)](PKGBUILD)
@@ -8,25 +9,20 @@ A high-fidelity, skeuomorphic **Windows 7 Aero** icon theme modernized and optim
 
 ---
 
-## Key Highlights & Improvements
+## Why Choose This Fork? (Comparison with Legacy Themes)
 
-This repository is an updated and optimized fork maintaining full compatibility with modern FreeDesktop and XDG standards:
+Most older Windows 7 icon packs on Gnome-Look / GitHub (like the original `Win2-7 Pack` and unmaintained mirrors) were designed for GTK 2 and broke on modern GTK 3 and GTK 4 desktops. This repository is an active, modernized fork resolving all known compatibility issues:
 
-- **FreeDesktop XDG Specification Compliance (`index.theme`)**:
-  - Raster PNG directories are strictly reclassified as `Type=Fixed` and `Type=Threshold` (with `Threshold=2`), keeping `Type=Scalable` strictly for vector SVG icons.
-  - Fixes icon scaling artifacts, blurry downscaling, and visual cutoffs in desktop panels and system trays (24px, 28px, 32px, 48px).
-- **FreeDesktop Modern Naming & Symlinks**:
-  - Full support for modern reverse-DNS application identifiers: `org.xfce.*` (Settings Manager, Thunar, Terminal Emulator, Screenshooter, Clipman, Taskmanager, Power Manager), `org.gnome.*` (Calculator, Loupe, FileRoller, gedit, SystemMonitor), `org.pulseaudio.pavucontrol`, and modern terminal emulators (`kitty`, `alacritty`).
-  - Native `places/` directory structure matching modern file managers (Thunar 4.20+, Nemo, Nautilus, Caja, PCManFM).
-- **Authentic Windows 7 Power & Lock Buttons**:
-  - FreeDesktop session actions (`xfsm-logout`, `application-exit`, `system-shutdown`, `system-log-out`) are mapped to the authentic Windows 7 power orb (`boot.png`).
-  - Lock actions (`xflock4`, `system-lock-screen`) are mapped to the Windows 7 lock icon.
-- **Git & Packaging Integrity**:
-  - Resolved upstream git blob mode issues on `apps/banshee.png`, `apps/banshee-panel.png`, and `apps/mozilla-firefox.png`.
-  - Fixed filenames containing spaces to comply with `gtk-update-icon-cache` hashing requirements.
-  - Cleaned up root directory layout while preserving custom Cinnamon applet assets in `applets/`.
-- **Fast GTK Icon Cache**:
-  - Fully compatible with `gtk-update-icon-cache` and `gtk4-update-icon-cache` for instant desktop loading with low memory overhead.
+| Feature / Issue | Legacy Windows 7 Themes | siliconfps/Windows-7 (This Fork) |
+| :--- | :--- | :--- |
+| **GTK 3 & GTK 4 Scaling** | ❌ Raster PNGs marked as `Scalable` (causes blurry, oversized buttons and high CPU) | ✅ Raster directories correctly classified as `Type=Threshold` / `Fixed` (sharp downscaling to 16/24/32px) |
+| **GTK Icon Cache** | ❌ Fails with `The generated cache was invalid` due to spaces in filenames | ✅ Compiles with **zero errors** via `gtk-update-icon-cache` |
+| **Modern Places Context** | ❌ Missing `places/` directory (falls back to generic Adwaita/hicolor folder icons) | ✅ Native `places/` and `places/16/` support for Thunar 4.20+, Nemo, Nautilus |
+| **App Identifiers** | ❌ Only legacy short names (`thunar`, `gedit`, `mousepad`) | ✅ Full modern reverse-DNS support (`org.xfce.*`, `org.gnome.*`, `pavucontrol`, `kitty`, `alacritty`) |
+| **Power & Session Buttons** | ❌ Generic orange GNOME exit icon | ✅ Iconic Windows 7 red power orb (`boot.png`) for Whisker Menu and logout dialogs |
+| **Automated Installer** | ❌ Manual file copying required | ✅ Fully featured `install.sh` supporting user-level, system-wide (`pkexec`), and Cinnamon applets |
+| **Arch Linux Packaging** | ❌ None | ✅ Complete `PKGBUILD` for Arch Linux, CachyOS, Manjaro, and AUR |
+| **AI Readability** | ❌ No structured metadata | ✅ Standard `llms.txt` and `llms.md` for AI search discovery and automated maintenance |
 
 ---
 
@@ -74,15 +70,15 @@ Pacman's ALPM hooks will automatically trigger `gtk-update-icon-cache` upon inst
 
 ---
 
-### Method 3: Manual Installation
+### Method 3: Pre-packaged Release Archives
 
-1. Copy the theme directory to either user or system icon path:
-   - User: `mkdir -p ~/.local/share/icons/Windows-7 && cp -dr . ~/.local/share/icons/Windows-7/`
-   - System: `sudo cp -dr . /usr/share/icons/Windows-7/`
-2. Update the GTK icon cache:
-   ```bash
-   gtk-update-icon-cache -f ~/.local/share/icons/Windows-7
-   ```
+Download the latest release archive (`.tar.xz` or `.tar.gz`) from the [Releases Page](https://github.com/siliconfps/Windows-7/releases/latest):
+
+```bash
+tar -xf Windows-7-v1.0.0.tar.xz
+cd Windows-7
+./install.sh --user
+```
 
 ---
 
@@ -100,6 +96,14 @@ After installation, activate the theme in your desktop environment's settings:
 ## Cinnamon Applets
 
 Custom icons for native Cinnamon applets are provided in the `applets/` directory. See [`applets/APPLETS.md`](applets/APPLETS.md) for details on overrides for `notifications@cinnamon.org`, `grouped-window-list@cinnamon.org`, and others.
+
+---
+
+## Machine & AI Discovery
+
+For AI assistants and search agents maintaining or indexing this repository:
+- Summary metadata: [`llms.txt`](llms.txt) (following the llmstxt.org specification)
+- Technical architecture and maintenance guide: [`llms.md`](llms.md)
 
 ---
 

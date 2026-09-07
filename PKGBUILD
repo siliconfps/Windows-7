@@ -34,6 +34,7 @@ package() {
         ! -name 'install.sh' \
         ! -name 'applets' \
         ! -name 'llms.md' \
+        ! -name 'llms.txt' \
         ! -name '*.pkg.tar.*' \
         -exec cp -dr --no-preserve=ownership -t "${_dest}/" {} +
 }

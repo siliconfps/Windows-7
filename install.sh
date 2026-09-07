@@ -141,6 +141,7 @@ EXCLUDE_LIST=(
     ".icon-theme.cache"
     "applets"
     "llms.md"
+    "llms.txt"
 )
 
 # Use cp or rsync if available
