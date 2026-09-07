@@ -2,7 +2,7 @@
 
 pkgname=windows-7-icon-theme-git
 _pkgname=Windows-7
-pkgver=r14.3a4ef5c
+pkgver=r73.4469049
 pkgrel=1
 pkgdesc="Windows 7 icon theme for Linux desktops (GTK 3, GTK 4, XFCE, MATE, Cinnamon)"
 arch=('any')
