@@ -1,51 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   version="1.1"
-   id="svg137"
-   width="64"
-   height="64"
-   viewBox="0 0 64 64"
-   sodipodi:docname="audio-volume-medium-symbolic.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs141" />
-  <sodipodi:namedview
-     id="namedview139"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="4.546875"
-     inkscape:cx="-2.9690722"
-     inkscape:cy="32.439863"
-     inkscape:window-width="960"
-     inkscape:window-height="462"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g143" />
-  <g
-     inkscape:groupmode="layer"
-     inkscape:label="Image"
-     id="g143">
-    <image
-       width="86.400002"
-       height="86.400002"
-       preserveAspectRatio="none"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAAEgBckRAAAACXBIWXMAAAsSAAALEgHS3X78AAAD q0lEQVRo3u2Zz2sbRxTHPyMSycbgYjBL6CGkKPhguxSk9lbIIQRaEgwt+A+werF66sGwIFppmyay L05yqW+usA/uMVAXXIwbVHoxtKgxDjimFNFCQ/Av1abEG8X262W2rGVpJcur2CH7hUVidp7ee/Od efOdETQLQ0TE3RDSn586DeVy+dkhE9M0H9JaWE5Ua2trrlbLEhGRtra2zBETx2J4eJjW43LlsNXM xAnabZDJZL6uNuY1MTo6ul7XlealjdcIM0C+IR6AGc1BHsAwjGjN3uICkI/FYtedd5OTk/UN3O92 d3cbY1pErgEMDAzU7JOt5qEesh0dHXkCtBw9ekrO+P3DUWf6etHfYEk6XGXd9amWAxG5B1zzcnKu mbREJKmUeq6U+mxnZ+dpZ2fnBaUUGxsbdHd3c6wiWQ37+/v3gALA8vLyktO+vr7ekH1CD0XeNM2H XkM0NTU11SwPh5aq46gWyYuLi77MqIR+AgR4XTGmF9mx10EjtSibSqU+FJErwEW/I8+665GWN0dQ VanUKQkWcLtKsat00OsUulCo8cKc99hwDjmYmJjIOd+3traa5qAaPgBIJpO7wHsAXV1d/jlYXV29 qb/eBK6cdBYdlRg9Pf3AeWAbiPjqQET64/H4HeAFcB343av/sTd9pdQj4HOAUql0F7jUrObPe80i EXlXZwDA+Pj4yUSX10Lz2vC9OPgD+EIp9W0dTohEIv7IR+CrVlXTqB4eI9hYAgQI8KpBteA24H2t /v4CvgfWXoWBuAxkgZl0Or3kOoxaZz3wqBN4KpVaqnJcbygBEWFubu50Aq+U3s0k4CQhIgwODvoe bMItwpxnZGTkN/GAVwIi0r+ysvJzOBy2gI7KRDKZjK8JWG71aFlW1TPJcRkQkQu2bf9rGMaX1ZKI xWK+nS1PDBG5ure39zwWi90C3tba/GkkEvloYWHhKvBxpc309HRDv33uZSSglPoRiIjIs/b29he2 bT/Wp5YHfX19c8D8kUUWjZ4dBjQLyWKx+Ni27Sc6eIC3Njc3/wT+qezv/ifh1BkAiMfjvxYKhSLw g6v5Vjqd/g54UNl/dnb2bCVQKBR+cbHxBpBLJBLFXC53H3jkXsClUomhoSHfpIQB3Ki4HAoDl0zT 7B0bG3unxrz/yasShUKh3oODg7/19cD/wW9vb2MYBuVy+XQ3s2Y2svn5+dOVE+5EwuFwXt/unG+o moSaqyfK50Q+0XctbwJPgAXgm0D0BwgQoCb+AyvaimKWq+qMAAAAAElFTkSuQmCC "
-       id="image145"
-       x="-11.2"
-       y="-11.2" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#2e3436">
+        <path d="m 7 1.007812 c -0.296875 -0.003906 -0.578125 0.125 -0.769531 0.351563 l -3.230469 3.640625 h -1 c -1.09375 0 -2 0.84375 -2 2 v 2 c 0 1.089844 0.910156 2 2 2 h 1 l 3.230469 3.640625 c 0.210937 0.253906 0.492187 0.363281 0.769531 0.359375 z m 3.039062 2.980469 c -0.222656 -0.007812 -0.453124 0.058594 -0.644531 0.203125 c -0.261719 0.199219 -0.394531 0.5 -0.394531 0.804688 v 0.066406 c 0.011719 0.1875 0.078125 0.371094 0.199219 0.527344 c 1.074219 1.429687 1.074219 3.390625 0 4.816406 c -0.121094 0.160156 -0.1875 0.34375 -0.199219 0.53125 v 0.066406 c 0 0.304688 0.132812 0.605469 0.394531 0.804688 c 0.441407 0.332031 1.066407 0.242187 1.398438 -0.199219 c 0.804687 -1.066406 1.207031 -2.335937 1.207031 -3.609375 s -0.402344 -2.542969 -1.207031 -3.613281 c -0.183594 -0.246094 -0.464844 -0.382813 -0.753907 -0.398438 z m 0 0"/>
+        <path d="m 13.460938 1.96875 c -0.191407 -0.003906 -0.386719 0.054688 -0.558594 0.167969 c -0.457032 0.3125 -0.578125 0.933593 -0.269532 1.390625 c 1.824219 2.707031 1.824219 6.238281 0 8.945312 c -0.308593 0.457032 -0.1875 1.078125 0.269532 1.390625 c 0.457031 0.308594 1.078125 0.1875 1.390625 -0.269531 c 1.136719 -1.691406 1.707031 -3.640625 1.707031 -5.59375 s -0.570312 -3.902344 -1.707031 -5.59375 c -0.195313 -0.285156 -0.511719 -0.4375 -0.832031 -0.4375 z m 0 0" fill-opacity="0.34902"/>
+    </g>
 </svg>
