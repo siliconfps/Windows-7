@@ -8,3 +8,4 @@ icon-theme.cache
 *.pkg.tar.gz
 src/
 pkg/
+dist/
