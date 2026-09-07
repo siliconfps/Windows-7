@@ -140,6 +140,7 @@ EXCLUDE_LIST=(
     "icon-theme.cache"
     ".icon-theme.cache"
     "applets"
+    "llms.md"
 )
 
 # Use cp or rsync if available

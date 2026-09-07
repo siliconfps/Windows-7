@@ -33,6 +33,7 @@ package() {
         ! -name 'PKGBUILD' \
         ! -name 'install.sh' \
         ! -name 'applets' \
+        ! -name 'llms.md' \
         ! -name '*.pkg.tar.*' \
         -exec cp -dr --no-preserve=ownership -t "${_dest}/" {} +
 }
