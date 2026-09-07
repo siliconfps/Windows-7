@@ -1,0 +1,10 @@
+# GTK Icon caches
+icon-theme.cache
+.icon-theme.cache
+
+# Arch Linux packaging artifacts
+*.pkg.tar.zst
+*.pkg.tar.xz
+*.pkg.tar.gz
+src/
+pkg/
