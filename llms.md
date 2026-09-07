@@ -164,6 +164,6 @@ makepkg --printsrcinfo
   - **SEMPRE utilize `pkexec`**: O sistema possui agente gráfico Polkit configurado para exibir o pop-up de senha.
 - **GitHub CLI (`gh`)**:
   - A CLI `gh` está autenticada na conta `siliconfps`.
-  - Operações de `git push`, criação de releases e PRs devem ser feitas diretamente apontando para `origin master`.
+  - Operações de `git push`, criação de releases e PRs devem ser feitas diretamente apontando para `origin main`.
 - **Formato dos Commits**:
   - Adote o padrão de Conventional Commits (`feat:`, `fix:`, `cleanup:`, `docs:`, `refactor:`).
