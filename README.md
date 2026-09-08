@@ -79,7 +79,7 @@ Pacman's ALPM hooks will automatically trigger `gtk-update-icon-cache` upon inst
 Download the latest release archive (`.tar.xz` or `.tar.gz`) from the [Releases Page](https://github.com/siliconfps/Windows-7/releases/latest):
 
 ```bash
-tar -xf Windows-7-v1.0.0.tar.xz
+tar -xf Windows-7-v1.0.1.tar.xz
 cd Windows-7
 ./install.sh --user
 ```

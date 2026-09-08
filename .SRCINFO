@@ -1,6 +1,6 @@
 pkgbase = windows-7-icon-theme-git
 	pkgdesc = Windows 7 icon theme for Linux desktops (GTK 3, GTK 4, XFCE, MATE, Cinnamon)
-	pkgver = r14.3a4ef5c
+	pkgver = r75.7b26daf
 	pkgrel = 1
 	url = https://github.com/siliconfps/Windows-7
 	arch = any
