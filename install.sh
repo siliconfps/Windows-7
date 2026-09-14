@@ -46,6 +46,7 @@ Options:
                         (Target: /usr/share/icons/${THEME_NAME})
   -d, --destdir <DIR>   Install into custom staging directory
   --cinnamon-applets    Install custom Cinnamon applet icons into /usr/share/cinnamon/applets/
+  --uninstall           Remove an installed theme (respects --user/--system/--destdir)
   -h, --help            Show this help message and exit
 
 If no option is provided, the script automatically defaults to:
@@ -57,6 +58,7 @@ EOHELP
 TARGET_MODE=""
 CUSTOM_DESTDIR=""
 INSTALL_APPLETS=false
+UNINSTALL=false
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -79,6 +81,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --cinnamon-applets)
             INSTALL_APPLETS=true
+            shift
+            ;;
+        --uninstall)
+            UNINSTALL=true
             shift
             ;;
         -h|--help)
@@ -117,14 +123,41 @@ fi
 if [[ "$TARGET_MODE" == "system" && -z "$CUSTOM_DESTDIR" && $EUID -ne 0 ]]; then
     print_info "System-wide installation requires elevated privileges."
     print_info "Requesting authorization via pkexec..."
-    
+
+    # Re-exec via absolute path: pkexec may change the working directory,
+    # so a relative $0 would no longer resolve. Rebuild the argument list
+    # instead of forwarding "$@" verbatim to avoid duplicating --system.
+    SCRIPT_ABS="$(realpath "${BASH_SOURCE[0]}" 2>/dev/null || echo "${SCRIPT_DIR}/$(basename "${BASH_SOURCE[0]}")")"
+    REEXEC_ARGS=()
+    [[ -n "$CUSTOM_DESTDIR" ]] && REEXEC_ARGS+=(--destdir "$CUSTOM_DESTDIR")
+    [[ "$INSTALL_APPLETS" == true ]] && REEXEC_ARGS+=(--cinnamon-applets)
+    [[ "$UNINSTALL" == true ]] && REEXEC_ARGS+=(--uninstall)
+
     # Strictly use pkexec (never raw sudo)
     if command -v pkexec >/dev/null 2>&1; then
-        exec pkexec env DISPLAY="${DISPLAY:-}" XAUTHORITY="${XAUTHORITY:-}" "$0" --system "$@"
+        exec pkexec env DISPLAY="${DISPLAY:-}" XAUTHORITY="${XAUTHORITY:-}" "$SCRIPT_ABS" --system "${REEXEC_ARGS[@]}"
     else
         print_error "pkexec is required for graphical privilege elevation but was not found."
         exit 1
     fi
+fi
+
+# Uninstall mode: remove target dir and refresh cache, then exit.
+if [[ "$UNINSTALL" == true ]]; then
+    print_info "Removing ${THEME_NAME} icon theme from: ${TARGET_DIR}"
+    if [[ -d "$TARGET_DIR" ]]; then
+        rm -rf "$TARGET_DIR"
+        print_success "Theme directory removed."
+    else
+        print_warn "Theme directory does not exist, nothing to remove."
+    fi
+    if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+        gtk-update-icon-cache -f -q -t "$(dirname "$TARGET_DIR")" 2>/dev/null || true
+    elif command -v gtk4-update-icon-cache >/dev/null 2>&1; then
+        gtk4-update-icon-cache -f -q -t "$(dirname "$TARGET_DIR")" 2>/dev/null || true
+    fi
+    print_success "Uninstallation complete!"
+    exit 0
 fi
 
 print_info "Installing ${THEME_NAME} icon theme to: ${TARGET_DIR}"
@@ -142,6 +175,7 @@ EXCLUDE_LIST=(
     "applets"
     "llms.md"
     "llms.txt"
+    "COPYING"
     "preview.png"
     ".SRCINFO"
 )
@@ -186,13 +220,22 @@ fi
 
 # Optional Cinnamon Applets Installation
 if [[ "$INSTALL_APPLETS" == true ]]; then
+    APPLET_DEST="${CUSTOM_DESTDIR:-}/usr/share/cinnamon/applets"
     if [[ -d "${SCRIPT_DIR}/applets" ]]; then
-        print_info "Installing Cinnamon applet overrides to /usr/share/cinnamon/applets/..."
-        if [[ $EUID -ne 0 ]]; then
+        print_info "Installing Cinnamon applet overrides to ${APPLET_DEST}/..."
+        if [[ $EUID -ne 0 && -z "$CUSTOM_DESTDIR" ]]; then
             print_error "Cinnamon applets installation requires root privileges."
         else
-            cp -rf "${SCRIPT_DIR}/applets/"*@cinnamon.org /usr/share/cinnamon/applets/ 2>/dev/null || print_warn "Could not copy all applet icons."
-            print_success "Cinnamon applet icons installed."
+            mkdir -p "$APPLET_DEST"
+            shopt -s nullglob
+            APPLET_DIRS=("${SCRIPT_DIR}"/applets/*@cinnamon.org)
+            shopt -u nullglob
+            if [[ ${#APPLET_DIRS[@]} -gt 0 ]]; then
+                cp -rf "${APPLET_DIRS[@]}" "${APPLET_DEST}/" || print_warn "Could not copy all applet icons."
+                print_success "Cinnamon applet icons installed."
+            else
+                print_warn "No applet directories found under applets/."
+            fi
         fi
     fi
 fi
