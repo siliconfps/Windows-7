@@ -58,6 +58,11 @@ cd Windows-7
 ./install.sh --system --cinnamon-applets
 ```
 
+**Uninstall (works with `--user` / `--system` / `--destdir`):**
+```bash
+./install.sh --user --uninstall
+```
+
 ---
 
 ### Method 2: Arch Linux (PKGBUILD / AUR)
@@ -116,3 +121,11 @@ For AI assistants and search agents maintaining or indexing this repository:
 - **Win2-7 Pack**: Original concept and assets by [b00merang / Gnome-Look](https://www.gnome-look.org/content/show.php/Win2-7+Pack?content=113264).
 - **Xopek-Endurance**: Upstream fork adding modern Cinnamon symbolic icons.
 - **siliconfps**: Maintenance, FreeDesktop standards alignment, `index.theme` raster optimizations, XFCE / modern GTK fixes, installer, and Arch Linux packaging.
+
+---
+
+## License
+
+This theme is distributed under the **GNU General Public License v3.0 or later**
+([`COPYING`](COPYING)). The original Win2-7 artwork was released under the same
+terms; all modifications in this fork remain GPL-3.0-or-later.

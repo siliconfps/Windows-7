@@ -30,13 +30,13 @@ O repositório divide os recursos entre ícones matriciais (PNG) e vetoriais (SV
 | `animations/` | Animations | 32x32 | `Type=Fixed` | PNG | Animações de progresso/carregamento |
 | `apps/` | Applications | 128x128 | `Type=Threshold` | PNG | Ícones principais de aplicativos |
 | `apps/16/` | Applications | 16x16 | `Type=Threshold` | PNG | Ícones de aplicativos em listas e bandejas |
-| `apps/32/`, `34/`, `64/` | Applications | 32x32..64x64 | `Type=Threshold` | PNG | Resoluções intermediárias |
+| `apps/32/`, `34/`, `48/`, `64/` | Applications | 32x32..64x64 | `Type=Threshold` | PNG | Resoluções intermediárias |
 | `categories/` | Categories | 128x128 | `Type=Threshold` | PNG | Categorias do menu iniciar / Whisker |
 | `categories/16/` | Categories | 16x16 | `Type=Threshold` | PNG | Categorias em modo compacto |
 | `devices/` | Devices | 128x128 | `Type=Threshold` | PNG | Dispositivos e periféricos |
 | `devices/16/`, `48/`, `64/` | Devices | 16x16..64x64 | `Type=Threshold` | PNG | Dispositivos em escalas menores |
 | `emblems/` | Emblems | 128x128 | `Type=Threshold` | PNG | Emblemas e sobreposições de arquivos |
-| `emotes/` | Emblems | 21x21 | `Type=Threshold` | PNG | Emoticons |
+| `emotes/` | Emotes | 21x21 | `Type=Threshold` | PNG | Emoticons |
 | `filesystems/` | Places | 128x128 | `Type=Threshold` | PNG | Diretório legado de pastas e discos |
 | `filesystems/16/` | Places | 16x16 | `Type=Threshold` | PNG | Pastas legadas em 16x16 |
 | `places/` | Places | 128x128 | `Type=Threshold` | PNG | **Padrão canônico**: symlinks para `filesystems/` |
@@ -50,7 +50,7 @@ O repositório divide os recursos entre ícones matriciais (PNG) e vetoriais (SV
 | `scalable/*` | Vários | 16x16..512x512| `Type=Scalable` | **SVG** | Vetores escaláveis para telas HiDPI |
 | `symbolic/*` | Vários | 16x16..512x512| `Type=Scalable` | **SVG** | Ícones monocromáticos simbólicos |
 | `applets/` | Fora do tema | N/A | N/A | SVG/PNG | Ícones extras para applets nativos do Cinnamon |
-| `extras/` | Fora do tema | N/A | N/A | PNG/ICO | Wallpapers e botões Start alternativos |
+| `extras/` | Fora do tema | N/A | N/A | PNG | Overrides manuais (`start-here/`, `desktop/`) + arquivo morto (`archive/`, ex.: strips GNOME2) |
 
 ---
 
@@ -167,3 +167,22 @@ makepkg --printsrcinfo
   - Operações de `git push`, criação de releases e PRs devem ser feitas diretamente apontando para `origin main`.
 - **Formato dos Commits**:
   - Adote o padrão de Conventional Commits (`feat:`, `fix:`, `cleanup:`, `docs:`, `refactor:`).
+
+---
+
+## 7. Débito Técnico Conhecido (ordem de prioridade)
+
+1. **`scalable/actions/` ainda contém ~95 PNGs** misturados aos SVGs (só `scalable/apps/` foi limpo). Resolvem normalmente, mas não escalam como vetor. Remédio: realocar cada PNG para o diretório raster correspondente ou redesenhar como SVG.
+2. **Sem tiers raster 22x22 / 24x24.** Widgets GTK que pedem 22/24px caem nos diretórios `Threshold` + herança `hicolor` — funciona, mas um tier nativo seria mais nítido.
+3. **Cobertura de `symbolic/` centrada no Cinnamon.** Nomes simbólicos do GNOME Shell caem no Adwaita — aceitável, expandir oportunisticamente.
+4. **`extras/` é instalado junto** (inofensivo, ~30 arquivos) mas não é endereçável pelo tema. Ou excluir da instalação ou promover variantes `start-here` para `apps/` corretamente.
+
+## 8. Regras de Symlinks e Extensões (armadilhas reais)
+
+- **Extensão obrigatória**: o GTK só resolve `.png` / `.svg` / `.xpm`. Arquivos sem extensão são peso morto (ex.: `filesystems/user-home` virou `user-home.svg` + compat-link; symlinks sem extensão foram renomeados com sufixo correto).
+- **Profundidade do link relativo**: links em `places/` usam `../filesystems/…`, mas links em `places/16/` ou `apps/48/` exigem `../../…`. Profundidade errada = link dangling (o Passo 1 do §5 detecta).
+- **Nomes críticos que devem sempre resolver**: `folder`, `folder-home`, `user-home`, `user-trash`, `user-desktop`, `computer`, `system-shutdown`, `system-reboot`, `system-log-out`, `application-exit`, `dialog-information/warning/error`.
+
+## 9. Log de Manutenção
+
+- **2026-09-13**: `index.theme`: diretórios raster `Scalable → Fixed/Threshold` (alinhado à §3 deste documento e ao `README.md`; `status/20` 22→20, contexto `emotes` → `Emotes`, novo tier `apps/48`, strays realocados); `apps/user-desktop.png` corrompido (166 bytes) substituído por symlink; SVGs sem extensão sufixados; symlinks `folder-home` (×4) e `system-reboot` (×2); strips `gnome-netstatus` arquivados em `extras/archive/`; `install.sh`: correção do re-exec pkexec (duplicação de flags + path relativo), applets respeitam `--destdir` + `nullglob`, novo `--uninstall`; adicionado `COPYING` (GPL-3.0); `PKGBUILD` instala licença e nunca embarca cache stale.

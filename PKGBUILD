@@ -35,8 +35,16 @@ package() {
         ! -name 'applets' \
         ! -name 'llms.md' \
         ! -name 'llms.txt' \
+        ! -name 'COPYING' \
         ! -name 'preview.png' \
         ! -name '.SRCINFO' \
         ! -name '*.pkg.tar.*' \
+        ! -name 'icon-theme.cache' \
         -exec cp -dr --no-preserve=ownership -t "${_dest}/" {} +
+
+    # License for Arch packaging guidelines
+    install -Dm644 COPYING "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
+
+    # Never ship a stale icon cache; ALPM hooks rebuild it on install/upgrade
+    rm -f "${_dest}/icon-theme.cache"
 }

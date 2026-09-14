@@ -28,7 +28,12 @@ Most existing Windows 7 icon themes for Linux (such as the original Win2-7 pack 
   ```bash
   ./install.sh --system
   ```
+- **Uninstall support**:
+  ```bash
+  ./install.sh --user --uninstall
+  ```
 - **Arch Linux / AUR**:
   ```bash
   makepkg -si
   ```
+- **License**: GPL-3.0-or-later ([COPYING](COPYING)).
