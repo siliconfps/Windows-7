@@ -178,6 +178,12 @@ EXCLUDE_LIST=(
     "COPYING"
     "preview.png"
     ".SRCINFO"
+    "CHANGELOG.md"
+    "dist"
+    "*.tar.xz"
+    "*.tar.gz"
+    "SHA256SUMS*"
+    "*.sha256"
 )
 
 # Use cp or rsync if available

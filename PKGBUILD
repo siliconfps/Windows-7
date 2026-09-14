@@ -38,6 +38,12 @@ package() {
         ! -name 'COPYING' \
         ! -name 'preview.png' \
         ! -name '.SRCINFO' \
+        ! -name 'CHANGELOG.md' \
+        ! -name 'dist' \
+        ! -name '*.tar.xz' \
+        ! -name '*.tar.gz' \
+        ! -name 'SHA256SUMS*' \
+        ! -name '*.sha256' \
         ! -name '*.pkg.tar.*' \
         ! -name 'icon-theme.cache' \
         -exec cp -dr --no-preserve=ownership -t "${_dest}/" {} +
