@@ -58,10 +58,10 @@ O repositório divide os recursos entre ícones matriciais (PNG) e vetoriais (SV
 
 Ao modificar o [`index.theme`](index.theme), a IA deve obedecer estritamente às seguintes diretrizes:
 
-1. **Separação Obrigatória entre Raster e Scalable**:
-   - Pastas com imagens PNG **NUNCA** devem ser configuradas como `Type=Scalable`. Isso força os motores GTK 3 e GTK 4 a redimensionar dinamicamente PNGs de 128px para tamanhos de 24px/32px sem filtro adequado, gerando alto consumo de CPU e borrões na tela.
-   - Pastas com PNG devem usar `Type=Threshold` (com `Threshold=2` implícito ou explícito) ou `Type=Fixed`.
-   - Pastas com `Type=Scalable` devem conter **exclusivamente arquivos SVG** e declarar `MinSize` e `MaxSize`.
+1. **Separação Obrigatória entre Raster e Scalable (comprovado no código do GTK)**:
+   - Pastas com imagens PNG **DEVEM** usar `Type=Scalable` com bandas LARGAS (`MinSize=8`/`16`, `MaxSize=512`). Motivo técnico real (verificado no fonte do GTK 3.24, `theme_dir_size_difference` + `compare_dir_matches`, e em bateria de 17 mil lookups): o GTK **sempre prefere downscaling** — um diretório maior "rouba" a seleção de um diretório menor mesmo fora da banda Threshold — e widgets do XFCE (painel, toolbar do Thunar, whisker) renderizam pixbufs em tamanho nativo. Com bandas largas, a seleção vira "Size mais próximo vence" e requisições pequenas resolvem arte pequena. `Type=Threshold`/`Fixed` em raster foi testado e QUEBROU (ícones gigantes no painel/toolbar) — é proibido.
+   - O que realmente importa é **completude dos tiers**: todo nome de ícone precisa de arte nos tiers 16/24/32/48 (symlink para a maior arte `<= tier`, ou PNG pré-renderizado em tamanho exato quando só existe arte maior). Tier faltante resolve para arquivo 128px = ícone enorme. Conteúdo do tier 24 deve ser `<=24px`.
+   - Tiers legados de tamanho ímpar (`actions/25` Size=24, `status/20` Size=22, `notifications/32` Size=45, `emotes` Context=Emblems) são quirks herdados do v1.0.1, inofensivos sob seleção closest-Size — NÃO "corrigir".
 2. **Atualização da Lista `Directories=`**:
    - Qualquer nova pasta de ícones adicionada ao repositório **DEVE** ser incluída na chave `Directories=` na seção `[Icon Theme]`. Pastas não declaradas são ignoradas pelos seletores de ícones do Linux.
 3. **Cadeia de Herança (`Inherits`)**:
@@ -167,6 +167,12 @@ makepkg --printsrcinfo
   - Operações de `git push`, criação de releases e PRs devem ser feitas diretamente apontando para `origin main`.
 - **Formato dos Commits**:
   - Adote o padrão de Conventional Commits (`feat:`, `fix:`, `cleanup:`, `docs:`, `refactor:`).
+
+---
+
+## 7. Log de Manutenção
+
+- **2026-09-13 (tiers completos + correção de ícones gigantes)**: tentativa de migrar raster para Fixed/Threshold quebrou painel/toolbar/whisker (ícones enormes). Causa raiz comprovada no fonte do GTK + bateria de 17.654 lookups old-vs-new (750 regressões → 0): o GTK prefere downscaling incondicionalmente e o XFCE renderiza nativo. Estado final: stanzas wide-Scalable do v1.0.1 restauradas + 15 novos tiers 24/32/48 (16/24/32/48 completos por nome: ~1.730 symlinks para arte menor-mais-próxima + 161 PNGs pré-renderizados em tamanho exato). Regra de ouro: Threshold/Fixed em raster é proibido; vale completude de tier.
 
 ---
 

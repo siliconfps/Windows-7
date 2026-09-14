@@ -19,7 +19,7 @@ Most older Windows 7 icon packs on Gnome-Look / GitHub (like the original `Win2-
 
 | Feature / Issue | Legacy Windows 7 Themes | siliconfps/Windows-7 (This Fork) |
 | :--- | :--- | :--- |
-| **GTK 3 & GTK 4 Scaling** | ❌ Raster PNGs marked as `Scalable` (causes blurry, oversized buttons and high CPU) | ✅ Raster directories correctly classified as `Type=Threshold` / `Fixed` (sharp downscaling to 16/24/32px) |
+| **GTK 3 & GTK 4 Scaling** | ❌ Sparse size tiers (small requests fall back to 128px art or Adwaita) | ✅ Complete 16/24/32/48/64 tiers + wide-Scalable bands (closest-size resolution, small requests get small art) |
 | **GTK Icon Cache** | ❌ Fails with `The generated cache was invalid` due to spaces in filenames | ✅ Compiles with **zero errors** via `gtk-update-icon-cache` |
 | **Modern Places Context** | ❌ Missing `places/` directory (falls back to generic Adwaita/hicolor folder icons) | ✅ Native `places/` and `places/16/` support for Thunar 4.20+, Nemo, Nautilus |
 | **App Identifiers** | ❌ Only legacy short names (`thunar`, `gedit`, `mousepad`) | ✅ Full modern reverse-DNS support (`org.xfce.*`, `org.gnome.*`, `pavucontrol`, `kitty`, `alacritty`) |
