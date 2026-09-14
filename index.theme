@@ -3,206 +3,178 @@ Name=Windows-7
 Comment=Windows 7 Icon Theme for Linux Desktops (GTK 3, GTK 4, XFCE, MATE, Cinnamon, GNOME)
 Inherits=elementary,Adwaita,gnome,hicolor
 
+# Sizing policy (see llms.md for rationale):
+# - Raster PNG directories use Type=Fixed (exact Size) or Type=Threshold
+#   (Size +/- Threshold) so panels scale DOWN crisply instead of treating
+#   every PNG as infinitely scalable (the legacy GTK 3/4 blur bug).
+# - Only directories containing SVG artwork use Type=Scalable.
+
 # Directories list
-Directories=actions,actions/16,actions/25,actions/32,actions/48,actions/MediaPlayer,animations,apps,apps/16,apps/32,apps/34,apps/64,categories,categories/16,devices,devices/16,devices/48,devices/64,emblems,emotes,filesystems,filesystems/16,places,places/16,mimetypes,mimetypes/16,mimetypes/48,mimetypes/symbolic,notifications,notifications/32,status,status/18,status/20,status/48,status/52,status/64,status/76,status/symbolic,scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/places,scalable/status,symbolic,symbolic/actions,symbolic/categories,symbolic/devices,symbolic/emblems,symbolic/legacy,symbolic/mimetypes,symbolic/status,symbolic/ui
+Directories=actions,actions/16,actions/25,actions/32,actions/48,actions/MediaPlayer,animations,apps,apps/16,apps/32,apps/34,apps/48,apps/64,categories,categories/16,devices,devices/16,devices/48,devices/64,emblems,emotes,filesystems,filesystems/16,places,places/16,mimetypes,mimetypes/16,mimetypes/48,mimetypes/symbolic,notifications,notifications/32,status,status/18,status/20,status/48,status/52,status/64,status/76,status/symbolic,scalable/actions,scalable/apps,scalable/categories,scalable/devices,scalable/places,scalable/status,symbolic,symbolic/actions,symbolic/categories,symbolic/devices,symbolic/emblems,symbolic/legacy,symbolic/mimetypes,symbolic/status,symbolic/ui
 
 # Actions
 [actions]
 Size=128
 Context=Actions
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [actions/16]
 Size=16
 Context=Actions
-MinSize=8
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [actions/25]
-Size=24
+Size=26
 Context=Actions
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=4
+Type=Threshold
 
 [actions/32]
 Size=32
 Context=Actions
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [actions/48]
 Size=48
 Context=Actions
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=3
+Type=Threshold
 
 [actions/MediaPlayer]
 Size=38
 Context=Actions
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=7
+Type=Threshold
 
 # Animations
 [animations]
 Size=32
 Context=Animations
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 # Applications
 [apps]
 Size=128
 Context=Applications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [apps/16]
 Size=16
 Context=Applications
-MinSize=8
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [apps/32]
 Size=32
 Context=Applications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [apps/34]
 Size=34
 Context=Applications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
+
+[apps/48]
+Size=48
+Context=Applications
+Type=Fixed
 
 [apps/64]
 Size=64
 Context=Applications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 # Categories
 [categories]
 Size=128
 Context=Categories
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [categories/16]
 Size=16
 Context=Categories
-MinSize=8
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 # Devices
 [devices]
 Size=128
 Context=Devices
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [devices/16]
 Size=16
 Context=Devices
-MinSize=8
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [devices/48]
 Size=48
 Context=Devices
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [devices/64]
 Size=64
 Context=Devices
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 # Emblems
 [emblems]
 Size=128
 Context=Emblems
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 # Emotes
 [emotes]
 Size=21
-Context=Emblems
-MinSize=16
-MaxSize=512
-Type=Scalable
+Context=Emotes
+Threshold=2
+Type=Threshold
 
 # Filesystems / Places
 [filesystems]
 Size=128
 Context=Places
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [filesystems/16]
 Size=16
 Context=Places
-MinSize=8
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [places]
 Size=128
 Context=Places
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [places/16]
 Size=16
 Context=Places
-MinSize=8
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 # MimeTypes
 [mimetypes]
 Size=128
 Context=MimeTypes
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [mimetypes/16]
 Size=16
 Context=MimeTypes
-MinSize=8
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [mimetypes/48]
 Size=48
 Context=MimeTypes
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [mimetypes/symbolic]
 Size=16
@@ -215,66 +187,52 @@ Type=Scalable
 [notifications]
 Size=128
 Context=Notifications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [notifications/32]
 Size=45
 Context=Notifications
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=10
+Type=Threshold
 
 # Status
 [status]
 Size=128
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [status/18]
 Size=18
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Threshold=2
+Type=Threshold
 
 [status/20]
-Size=22
+Size=20
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [status/48]
 Size=48
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [status/52]
 Size=52
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [status/64]
 Size=64
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [status/76]
 Size=76
 Context=Status
-MinSize=16
-MaxSize=512
-Type=Scalable
+Type=Fixed
 
 [status/symbolic]
 Size=16
